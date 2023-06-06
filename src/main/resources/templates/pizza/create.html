@@ -8,7 +8,7 @@
 		<main style="margin: 50px;">
 			<h1 style="text-align: center;">Pizzeria (create)</h1>
 			
-			<form th:action="@{/pizza/store}" method="POST">
+			<form th:action="@{/admin/pizza/store}" method="POST">
 				<label for="pizza-name">Nome pizza</label>
 				<input id="pizza-name" type="text" name="name">
 				<label style="color: red" th:if="${errors != null && errors.hasFieldErrors('name')}">

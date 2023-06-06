@@ -64,7 +64,7 @@ public class PizzaController {
 		return "pizza/index";
 	}
 	
-	@GetMapping("/pizza/create")
+	@GetMapping("/admin/pizza/create")
 	public String create(Model model) {
 		List<Ingredient> ingredients = ingredientServ.findAll();
 		
@@ -74,7 +74,7 @@ public class PizzaController {
 		return "pizza/create";
 	}
 	
-	@PostMapping("/pizza/store")
+	@PostMapping("/admin/pizza/store")
 	public String store(@Valid @ModelAttribute Pizza pizza, BindingResult bindingResult, Model model){
 		
 		if (bindingResult.hasErrors()) {
@@ -90,7 +90,7 @@ public class PizzaController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/pizza/edit/{id}")
+	@GetMapping("/admin/pizza/edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) {
 		List<Ingredient> ingredients = ingredientServ.findAll();
 		
@@ -103,7 +103,7 @@ public class PizzaController {
 		return "pizza/edit";
 	}
 	
-	@PostMapping("pizza/update/{id}")
+	@PostMapping("/admin/pizza/update/{id}")
 	public String update(@PathVariable("id") int id, @Valid @ModelAttribute Pizza pizza, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
@@ -119,7 +119,7 @@ public class PizzaController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("pizza/delete/{id}")
+	@GetMapping("/admin/pizza/delete/{id}")
 	public String delete(@PathVariable("id") int id) {
 		
 		Optional<Pizza> pizzaOpt = pizzaService.findById(id);

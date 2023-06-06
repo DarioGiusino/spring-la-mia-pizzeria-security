@@ -8,7 +8,7 @@
 		<main style="margin: 50px;" th:object="${pizza}">
 			<h1 style="text-align: center;">Pizzeria (update)</h1>
 			
-			<form th:action="@{/pizza/update/{id} (id=*{id})}" method="POST">
+			<form th:action="@{/admin/pizza/update/{id} (id=*{id})}" method="POST">
 				<label for="pizza-name">Nome pizza</label>
 				<input id="pizza-name" type="text" name="name" th:value="*{name}">
 				<label style="color: red" th:if="${errors != null && errors.hasFieldErrors('name')}">

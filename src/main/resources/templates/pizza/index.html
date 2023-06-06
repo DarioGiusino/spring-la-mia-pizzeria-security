@@ -6,7 +6,12 @@
 	</head>
 	<body>
 		<main style="margin: 50px;">
-			<h1 style="text-align: center;">Pizzeria</h1>
+			<div style="margin-bottom: 50px;">
+				<h1 style="text-align: center;">Pizzeria</h1>
+				<a style="color: green; font-size: 25px;" th:href="@{/login}" sec:authorize="!isAuthenticated()">LOGIN</a>
+				<a style="color: red; font-size: 25px;" th:href="@{/logout}" sec:authorize="isAuthenticated()">LOGOUT</a>
+			</div>
+			
 			
 			<form style="margin-bottom: 20px; display: inline-block;" th:action="@{/pizza/filter}" method="POST">
 				<label for="pizza-name">Nome pizza</label>
@@ -14,9 +19,9 @@
 				<button>Filtra</button>
 			</form>
 			
-			<a style="color: green; margin-left: 20px;" th:href="@{/pizza/create}">Crea nuova pizza</a>
+			<a style="color: green; margin-left: 20px;" th:href="@{/admin/pizza/create}" sec:authorize="hasAuthority('ADMIN')">Crea nuova pizza</a>
 			
-			<a style="color: purple; margin-left: 20px;" th:href="@{/ingredients}">VEDI INGREDIENTI</a>
+			<a style="color: purple; margin-left: 20px;" th:href="@{/ingredients/user}" sec:authorize="hasAuthority('USER')">VEDI INGREDIENTI</a>
 			
 			<div th:if="${pizzaList.size() == 0}">
 				Non ci sono pizze qui.
@@ -24,8 +29,8 @@
 			
 			<div style="margin-bottom: 10px;" th:if="${pizzaList.size() > 0}" th:each="pizza : ${pizzaList}" th:object="${pizza}">
 				<a th:href="@{/pizza/{id} (id=*{id})}">[[ *{name} ]]</a>
-				<a style="margin-left: 5px;" th:href="@{/pizza/delete/{id} (id=*{id})}">DELETE</a>
-				<a style="margin-left: 5px;" th:href="@{/pizza/edit/{id} (id=*{id})}">EDIT</a>
+				<a style="margin-left: 5px;" th:href="@{/admin/pizza/delete/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">DELETE</a>
+				<a style="margin-left: 5px;" th:href="@{/admin/pizza/edit/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">EDIT</a>
 			</div>
 		</main>
 	</body>

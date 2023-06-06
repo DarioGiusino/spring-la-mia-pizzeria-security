@@ -8,7 +8,7 @@
 		<main style="margin: 50px;">
 			<h1 style="text-align: center;">Special Offer (create)</h1>
 			
-			<form th:action="@{/pizza/{pizzaId}/special-offer/store (pizzaId = ${pizzaId})}" method="POST" th:object="${specialOffer}">
+			<form th:action="@{/admin/pizza/{pizzaId}/special-offer/store (pizzaId = ${pizzaId})}" method="POST" th:object="${specialOffer}">
 						
 				<label for="special-offer-title">Titotlo offerta speciale</label>
 				<input id="special-offer-title" type="text" name="title">

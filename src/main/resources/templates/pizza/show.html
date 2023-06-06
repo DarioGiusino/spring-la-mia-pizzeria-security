@@ -15,7 +15,7 @@
 				
 				<h2>Offerte speciali:</h2>
 				
-				<a style="color: green;" th:href="@{/pizza/{pizzaId}/special-offer/create (pizzaId = *{id})}">Crea nuova offerta speciale</a>
+				<a style="color: green;" th:href="@{/admin/pizza/{pizzaId}/special-offer/create (pizzaId = *{id})}" sec:authorize="hasAuthority('ADMIN')">Crea nuova offerta speciale</a>
 				
 				<ul>
 					<li style="margin-bottom: 10px;" th:each="specialOffer : ${specialOffers}" th:object="${specialOffer}">
@@ -23,14 +23,14 @@
 						<p>Data di inizio offerta: [[*{startDate}]]</p>
 						<p>Data di fine offerta: [[*{endDate}]]</p>
 						<p>Prezzo scontato: [[*{discountedPrice}]] E</p>
-						<a th:href="@{/pizza/{pizzaId}/special-offer/edit/{id} (pizzaId = ${pizza.id}, id=*{id})}">MODIFICA OFFERTA</a>
+						<a th:href="@{/admin/pizza/{pizzaId}/special-offer/edit/{id} (pizzaId = ${pizza.id}, id=*{id})}" sec:authorize="hasAuthority('ADMIN')">MODIFICA OFFERTA</a>
 					</li>
 				</ul>
 				
 				<div th:if="${ingredients.size() > 0}">
 					<h2>Ingredienti:</h2>
 					
-					<a style="color: green;" th:href="@{/ingredients/create}">Crea nuovo ingrediente</a>
+					<a style="color: green;" th:href="@{/admin/ingredients/create}" sec:authorize="hasAuthority('ADMIN')">Crea nuovo ingrediente</a>
 					
 					<ul>
 						<li style="margin-bottom: 10px;" th:each="ingredient : ${ingredients}" th:object="${ingredient}">
