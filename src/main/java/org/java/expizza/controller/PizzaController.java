@@ -8,6 +8,7 @@ import org.java.expizza.pojo.Pizza;
 import org.java.expizza.pojo.SpecialOffer;
 import org.java.expizza.serv.IngredientServ;
 import org.java.expizza.serv.PizzaService;
+import org.java.expizza.serv.SpecialOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,9 @@ public class PizzaController {
 	
 	@Autowired
 	private IngredientServ ingredientServ;
+	
+	@Autowired
+	private SpecialOfferService specialOfferServ;
 	
 	@GetMapping("/")
 	public String index(Model model){
@@ -124,6 +128,10 @@ public class PizzaController {
 		
 		Optional<Pizza> pizzaOpt = pizzaService.findById(id);
 		Pizza pizza = pizzaOpt.get();
+		
+		for (SpecialOffer so : pizza.getSpecialOffers()) {
+			specialOfferServ.delete(so);
+		}
 		
 		pizzaService.delete(pizza);
 		

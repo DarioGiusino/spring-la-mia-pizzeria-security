@@ -122,5 +122,4 @@ public class Pizza {
 	public void removeIngredient(Ingredient ingredient) {
 		getIngredients().remove(ingredient);		
 	}
-
 }
